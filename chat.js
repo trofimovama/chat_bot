@@ -16,7 +16,7 @@ rl.question('Как тебя зовут? ', function (name) {
          end1 = 'ой';
          end2 = 'ый';
       }
-      console.log(`Привет, ${userName} Ты так${end1} красив${end2} сегодня!`);
+      console.log(`Привет, ${userName}! Ты так${end1} красив${end2} сегодня!`);
    }
    rl.close();
 });
