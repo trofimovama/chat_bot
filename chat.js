@@ -18,10 +18,6 @@ rl.question('Как тебя зовут? ', function (name) {
       }
       console.log(`Привет, ${userName} Ты так${end1} красив${end2} сегодня!`);
    }
-   // } else if (user.name != null && user.gender == 'female') {
-   //    const userName = user.name.charAt(0).toUpperCase() + user.name.slice(1);
-   //    console.log(`Привет, ${userName} Ты такая красивая сегодня!`);
-   // }
    rl.close();
 });
 
