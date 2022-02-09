@@ -1,16 +1,14 @@
-const { request } = require("http");
-
 class App {
   commands = [];
 
   registerCommand(name, callback) {
-    const object = { name: name, callback: callback };
+    const object = { name, callback };
     this.commands.push(object);
   }
 
   showCommands() {
-    const names = this.commands.map((item) => item.name);
-    return "Привет, я чат-бот! Список моих команд: " + names.join(", ") + " :)";
+    const names = this.commands.map((item) => item.name).join(", ");
+    return "Список моих команд: " + names;
   }
 
   listenToCommand() {
@@ -21,8 +19,13 @@ class App {
     });
 
     rl.question("Введите команду: ", (userCommand) => {
-      const command1 = this.commands.find(item => item.name === userCommand);
-      console.log(command1?.callback());
+      const userRequest = this.commands.find(
+        (item) => item.name.toLowerCase() === userCommand.toLowerCase()
+      );
+      console.log(userRequest?.callback());
+      if (userRequest === undefined) {
+        console.log("Такой команды нет, попробуйте еще раз!");
+      }
       rl.close();
       this.listenToCommand();
     });
@@ -35,10 +38,11 @@ class App {
       "случайное число",
       () => Math.floor(Math.random() * 10) + 1
     );
-    this.registerCommand("до встречи", () => process.exit(0));
+    this.registerCommand("выйти", () => process.exit(0));
     console.log(this.showCommands());
     this.listenToCommand();
   }
 }
 
-module.exports = App;
+const app = new App();
+module.exports = app;
