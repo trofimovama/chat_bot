@@ -22,7 +22,7 @@ class App {
       const userRequest = this.commands.find(
         (item) => item.name.toLowerCase() === userCommand.toLowerCase()
       );
-      console.log(userRequest?.callback());
+      if (userRequest?.callback) console.log(userRequest.callback());
       if (userRequest === undefined) {
         console.log("Такой команды нет, попробуйте еще раз!");
       }
