@@ -2,11 +2,10 @@ class User {
    name;
    gender;
    greeting(name) {
-      if (name.length < 3) {
+      if (name.replace(/\s/g, '').length < 3) {
          console.log('Введи имя, содержащее более двух букв!')
       } else if (/\d+/g.test(name)) {
-         console.log('Имя не должно содержать цифры!')
-         
+         console.log('Имя не должно содержать цифры!')       
       } else if (/[-~]/gm.test(name)) {
          console.log('Имя не должно содержать специальные символы!')
       } else {
