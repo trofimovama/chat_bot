@@ -19,25 +19,26 @@ class App {
   }
 
   listenToCommand = () => {
-    readline.question("Введите команду: ", (userCommand) => {
-      const userRequest = this.commands.find(
-        (item) => item.name.toLowerCase() === userCommand.toLowerCase()
+    readline.question("Введите команду: ", (inputCommandName) => {
+      const handler = this.commands.find(
+        (item) => item.name.toLowerCase() === inputCommandName.toLowerCase()
       );
-
-      if (userRequest?.callback) console.log(userRequest.callback());
-      if (userRequest === undefined) {
-        console.log("Такой команды нет, попробуйте еще раз!");
-      }
-      readline.close();
-      this.listenToCommand();
-    });
-  }
+if (!handler?.callback) {
+  // если команды нет:
+  console.log("Такой команды нет, попробуйте еще раз!");
+   return this.listenToCommand();
+} else {
+ // а если есть такая команда:
+     handler.callback(this.listenToCommand);
+    }
+  });
+  };
 
   start() {
     this.registerCommand("дата", () => getDate);
     this.registerCommand("комплимент", () => getCompliment());
     this.registerCommand("случайное число", () => randomNumber);
-    this.registerCommand("погода", () => getWeather());
+    this.registerCommand("погода", (callback) => getWeather(callback));
     this.registerCommand("выйти", () => exitApp());
     console.log(this.showCommands());
     this.listenToCommand();
