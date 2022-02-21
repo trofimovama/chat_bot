@@ -1,3 +1,10 @@
+const getDate = require("./commands/date");
+const getCompliment = require("./commands/compliment");
+const randomNumber = require("./commands/random");
+const exitApp = require("./commands/exit");
+const getWeather = require("./commands/weather");
+const readline = require("./readline");
+
 class App {
   commands = [];
 
@@ -11,34 +18,27 @@ class App {
     return "Список моих команд: " + names;
   }
 
-  listenToCommand() {
-    const readline = require("readline");
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    rl.question("Введите команду: ", (userCommand) => {
+  listenToCommand = () => {
+    readline.question("Введите команду: ", (userCommand) => {
       const userRequest = this.commands.find(
         (item) => item.name.toLowerCase() === userCommand.toLowerCase()
       );
+
       if (userRequest?.callback) console.log(userRequest.callback());
       if (userRequest === undefined) {
         console.log("Такой команды нет, попробуйте еще раз!");
       }
-      rl.close();
+      readline.close();
       this.listenToCommand();
     });
   }
 
   start() {
-    this.registerCommand("дата", () => new Date());
-    this.registerCommand("комплимент", () => "Ты в классной форме!");
-    this.registerCommand(
-      "случайное число",
-      () => Math.floor(Math.random() * 10) + 1
-    );
-    this.registerCommand("выйти", () => process.exit(0));
+    this.registerCommand("дата", () => getDate);
+    this.registerCommand("комплимент", () => getCompliment());
+    this.registerCommand("случайное число", () => randomNumber);
+    this.registerCommand("погода", () => getWeather());
+    this.registerCommand("выйти", () => exitApp());
     console.log(this.showCommands());
     this.listenToCommand();
   }

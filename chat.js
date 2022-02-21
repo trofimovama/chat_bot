@@ -1,11 +1,8 @@
 const User = require('./user')
-const readline = require('readline');
-const rl = readline.createInterface({
-   input: process.stdin,
-   output: process.stdout
-});
+const readline = require('./readline');
 
-rl.question('Как тебя зовут? ', function (name) {
+
+readline.question('Как тебя зовут? ', function (name) {
    const user = new User();
    user.greeting(name);
    if (user.name != null) {
@@ -18,11 +15,11 @@ rl.question('Как тебя зовут? ', function (name) {
       }
       console.log(`Привет, ${userName}! Ты так${end1} красив${end2} сегодня!`);
    }
-   rl.close();
+   readline.close();
 });
 
 
-rl.on('close', function () {
+readline.on('close', function () {
    process.exit(0);
 });
 
