@@ -2,7 +2,7 @@ const User = require('./user')
 const readline = require('./readline');
 
 
-readline.question('Как тебя зовут? ', function (name) {
+readline.question('Как тебя зовут? ', (name) => {
    const user = new User();
    user.greeting(name);
    if (user.name != null) {

@@ -1,4 +1,4 @@
-function exitApp() {
+const exitApp = () => {
     process.exit(0);
 } 
 

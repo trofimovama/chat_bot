@@ -1,4 +1,4 @@
-function getCompliment() {
+const getCompliment = () => {
     return 'Ты в классной форме!';
 }
 

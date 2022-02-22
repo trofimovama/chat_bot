@@ -1,8 +1,10 @@
-const getDate = require("./commands/date");
-const getCompliment = require("./commands/compliment");
-const randomNumber = require("./commands/random");
-const exitApp = require("./commands/exit");
-const getWeather = require("./commands/weather");
+const {
+  getCompliment,
+  getDate,
+  getWeather,
+  exitApp,
+  randomNumber,
+} = require("./commands/commands.js");
 const readline = require("./readline");
 
 class App {
@@ -23,15 +25,13 @@ class App {
       const handler = this.commands.find(
         (item) => item.name.toLowerCase() === inputCommandName.toLowerCase()
       );
-if (!handler?.callback) {
-  // если команды нет:
-  console.log("Такой команды нет, попробуйте еще раз!");
-   return this.listenToCommand();
-} else {
- // а если есть такая команда:
-     handler.callback(this.listenToCommand);
-    }
-  });
+      if (!handler?.callback) {
+        console.log("Такой команды нет, попробуйте еще раз!");
+        this.listenToCommand();
+      }
+      console.log(handler.callback(this.listenToCommand)); // if we remove console.log - undefined(weather func) str is not displayed but other commands stop working
+      this.listenToCommand();
+    });
   };
 
   start() {
