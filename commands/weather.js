@@ -1,7 +1,7 @@
 const readline = require("../readline");
 const fetch = require("node-fetch");
 
-const getWeather = async function getWeather(callback) {
+const getWeather=async function getWeather(callback) {
   readline.question(
     "Введи название города в формате - Moscow,ru: ",
     (cityName) => {
