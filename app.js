@@ -4,6 +4,8 @@ const {
   getWeather,
   exitApp,
   randomNumber,
+  sortArray,
+  fibonacci,
 } = require("./commands/commands.js");
 const readline = require("./readline");
 
@@ -39,6 +41,8 @@ class App {
     this.registerCommand("комплимент", () => getCompliment());
     this.registerCommand("случайное число", () => randomNumber);
     this.registerCommand("погода", (callback) => getWeather(callback));
+    this.registerCommand("фибоначчи", (callback) => fibonacci(callback));
+    this.registerCommand("массив", (callback) => sortArray(callback));
     this.registerCommand("выйти", () => exitApp());
     console.log(this.showCommands());
     this.listenToCommand();
