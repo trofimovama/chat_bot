@@ -5,48 +5,48 @@ const {
   exitApp,
   randomNumber,
   sortArray,
-  fibonacci,
+  commandFibonacci,
 } = require("./commands/commands.js");
 const readline = require("./readline");
 
 class App {
   commands = [];
 
-  registerCommand(name, callback) {
-    const object = { name, callback };
-    this.commands.push(object);
-  }
+  registerCommand = (commandName, callback) => {
+    this.commands = [...this.commands, { commandName, callback }];
+  };
 
-  showCommands() {
-    const names = this.commands.map((item) => item.name).join(", ");
-    return "Список моих команд: " + names;
-  }
+  showCommands = () => {
+    return `Привет, я чат-бот! Список моих команд: ${this.commands
+      .map((item) => item.commandName)
+      .join(", ")}`;
+  };
 
   listenToCommand = () => {
     readline.question("Введите команду: ", (inputCommandName) => {
       const handler = this.commands.find(
-        (item) => item.name.toLowerCase() === inputCommandName.toLowerCase()
+        (item) =>
+          item.commandName.toLowerCase() === inputCommandName.toLowerCase()
       );
-      if (!handler?.callback) {
+      if (!handler) {
         console.log("Такой команды нет, попробуйте еще раз!");
-        this.listenToCommand();
+        return this.listenToCommand();
       }
-      console.log(handler.callback(this.listenToCommand)); // if we remove console.log - undefined(weather func) str is not displayed but other commands stop working
-      this.listenToCommand();
+      handler.callback(this.listenToCommand); // if we remove console.log - undefined(weather func) str is not displayed but other commands stop working
     });
   };
 
-  start() {
-    this.registerCommand("дата", () => getDate);
-    this.registerCommand("комплимент", () => getCompliment());
-    this.registerCommand("случайное число", () => randomNumber);
-    this.registerCommand("погода", (callback) => getWeather(callback));
-    this.registerCommand("фибоначчи", (callback) => fibonacci(callback));
-    this.registerCommand("массив", (callback) => sortArray(callback));
-    this.registerCommand("выйти", () => exitApp());
-    console.log(this.showCommands());
-    this.listenToCommand();
-  }
+  start () {
+    this.registerCommand("дата", getDate);
+    this.registerCommand("комплимент", getCompliment);
+    this.registerCommand("случайное число", randomNumber);
+    this.registerCommand("погода", getWeather);
+    this.registerCommand("фибоначчи", commandFibonacci);
+    this.registerCommand("массив", sortArray);
+    this.registerCommand("выйти", exitApp);
+    console.log(this.showCommands(this.commands));
+    this.listenToCommand(this.commands);
+  };
 }
 
 const app = new App();

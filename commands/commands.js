@@ -5,5 +5,6 @@ module.exports = {
     randomNumber:require('./random'),
     getWeather:require('./weather'),
     sortArray:require('./sortArray'),
-    fibonacci:require('./fibonacci'),
+    commandFibonacci:require('./fibonacci'),
+    readline:require('../readline')
 };
