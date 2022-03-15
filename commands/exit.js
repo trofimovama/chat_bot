@@ -1,10 +1,8 @@
 const exitApp = () => {
-  let counter = 6;
-  let exitCountdown = setInterval(function () {
+  let counter = 5;
+    console.log("Осталось: ", counter, " секунд")
+  let exitCountdown = setInterval( () => {
     counter--;
-    if (counter === 5) {
-      console.log("Осталось: ", counter, " секунд");
-    }
     if (counter === 4 || counter === 3 || counter === 2) {
       console.log("Осталось: ", counter, " секунды");
     }
@@ -15,7 +13,7 @@ const exitApp = () => {
       clearInterval(exitCountdown);
       process.exit(0);
     }
-  }, 1500);
+  }, 1000);
 };
 
 module.exports = exitApp;

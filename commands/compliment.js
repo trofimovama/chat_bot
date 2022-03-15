@@ -1,5 +1,6 @@
-const getCompliment = () => {
-    return 'Ты в классной форме!';
+const getCompliment = (callback) => {
+    console.log('Ты в классной форме!');
+    callback();
 }
 
 module.exports = getCompliment;
