@@ -1,6 +1,6 @@
 const readline = require("../readline");
 const fetch = require("node-fetch");
-require('dotenv').config();
+require("dotenv").config();
 
 const getWeather = async (callback) => {
   readline.question(
@@ -13,14 +13,31 @@ const getWeather = async (callback) => {
       if (data.cod === "404" || !cityName) {
         console.log("Упс! Такой город не найден!");
       } else {
-        let skyDescription = data.weather[0].description;
+        const skyDescription = data.weather[0].description;
         console.log(skyDescription);
         const temperature = data.main.temp;
-        console.log("Текущая температура: ", temperature, "*C");
-        let minTemperature = data.main.temp_min;
-        console.log("Минимальная температура сегодня: ", minTemperature, "*C");
-        let maxTemperature = data.main.temp_max;
-        console.log("Максимальная температура сегодня: ", maxTemperature, "*C");
+        const minTemperature = data.main.temp_min;
+        const maxTemperature = data.main.temp_max;
+
+        const weatherData = [
+          {
+            title: "Текущая температура: ",
+            value: temperature,
+          },
+          {
+            title: "Минимальная температура сегодня: ",
+            value: minTemperature,
+          },
+          {
+            title: "Максимальная температура сегодня: ",
+            value: maxTemperature,
+          },
+        ];
+        
+        weatherData.forEach(element => {
+          console.log(element.title, element.value, '*C');
+        })
+
         callback();
       }
     }

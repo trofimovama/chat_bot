@@ -6,8 +6,7 @@ class FibonacciNumbers {
     let currentNumberFibonacci = 1;
 
     let timeFibonacci = setInterval(() => {
-      let nextNumberFibonacci =
-        previousNumberFibonacci + currentNumberFibonacci;
+      let nextNumberFibonacci = previousNumberFibonacci + currentNumberFibonacci;
       previousNumberFibonacci = currentNumberFibonacci;
       currentNumberFibonacci = nextNumberFibonacci;
       console.log(currentNumberFibonacci);

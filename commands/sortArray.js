@@ -4,34 +4,19 @@ const sortArray = (callback) => {
   readline.question("Введи числа через запятую: ", (userInput) => {
     let userArray = Object.values(userInput.split(","));
 
-    let sortedArray = [];
-    let temporary;
-
-    numbersArray = userArray.map((str) => {  // преобразовали массив строк в массив чисел
+    numbersArray = userArray.map((str) => {
       if (str.trim() === "") {
         return NaN;
       }
       return Number(str);
     });
+    numbersArray.sort();
+    numbersSet = new Set(numbersArray);
+    modifiedArray = [...numbersSet];
 
-    modifiedArray = numbersArray.filter((i) => !isNaN(i)); // избавились от всех НЕ чисел
+    resultArray = numbersArray.filter((i) => !isNaN(i));
+    resultArray.length ? console.log("Отсортировано успешно! ", resultArray) : console.log("Тут пусто!");
 
-    modifiedArray.sort();
-    let length = modifiedArray.length;
-
-    for (let i = 0; i < length; i++) {
-      if (modifiedArray[i] !== temporary) {   // оставили только уникальные значени без повторений
-        
-        sortedArray.push(modifiedArray[i]);
-        temporary = modifiedArray[i];
-      }
-    }
-
-    if (sortedArray.length) {
-        console.log("Отсортировано успешно! ", sortedArray); 
-    } else {
-        console.log("Тут пусто!"); // исключили возможность вводить только пробелы
-    }
     callback();
   });
 };

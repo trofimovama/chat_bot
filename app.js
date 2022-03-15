@@ -1,13 +1,5 @@
-const {
-  getCompliment,
-  getDate,
-  getWeather,
-  exitApp,
-  randomNumber,
-  sortArray,
-  commandFibonacci,
-} = require("./commands/commands.js");
 const readline = require("./readline");
+const COMMAND = require('./constants');
 
 class App {
   commands = [];
@@ -32,18 +24,14 @@ class App {
         console.log("Такой команды нет, попробуйте еще раз!");
         return this.listenToCommand();
       }
-      handler.callback(this.listenToCommand); // if we remove console.log - undefined(weather func) str is not displayed but other commands stop working
+      handler.callback(this.listenToCommand);
     });
   };
 
   start () {
-    this.registerCommand("дата", getDate);
-    this.registerCommand("комплимент", getCompliment);
-    this.registerCommand("случайное число", randomNumber);
-    this.registerCommand("погода", getWeather);
-    this.registerCommand("фибоначчи", commandFibonacci);
-    this.registerCommand("массив", sortArray);
-    this.registerCommand("выйти", exitApp);
+    COMMAND.forEach(commandElement => {
+      this.registerCommand(commandElement.name, commandElement.value);
+    });
     console.log(this.showCommands(this.commands));
     this.listenToCommand(this.commands);
   };
