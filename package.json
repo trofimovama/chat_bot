@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "node-fetch": "^2.6.1",
+    "plural-ru": "^2.0.2",
+    "request": "^2.88.2"
+  },
+  "name": "chat_bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trofimovama/ChatterBot.git"
+  },
+  "author": "Maria Trofimova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trofimovama/ChatterBot/issues"
+  },
+  "homepage": "https://github.com/trofimovama/ChatterBot#readme",
+  "description": ""
+}
