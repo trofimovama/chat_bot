@@ -1,5 +1,5 @@
 const readline = require("./readline");
-const COMMAND = require('./constants');
+const COMMANDS = require('./constants');
 
 class App {
   commands = [];
@@ -29,7 +29,7 @@ class App {
   };
 
   start () {
-    COMMAND.forEach(commandElement => {
+    COMMANDS.forEach(commandElement => {
       this.registerCommand(commandElement.name, commandElement.value);
     });
     console.log(this.showCommands(this.commands));

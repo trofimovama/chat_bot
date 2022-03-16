@@ -7,7 +7,7 @@ const {
   exitApp,
 } = require("./commands/commands");
 
-const COMMAND = [
+const COMMANDS = [
   {
     name: "дата",
     value: getDate,
@@ -34,4 +34,4 @@ const COMMAND = [
   },
 ];
 
-module.exports = COMMAND;
+module.exports = COMMANDS;
