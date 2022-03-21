@@ -4,15 +4,10 @@ const multipleArgumentsFunc = (...arguments) => {
      }) 
 };
 
-const unnamedParametersFunc = (objectOption) => {
-    const  a = objectOption.a;
-    const b = objectOption.b;
-    const c = objectOption.c;
-          for (let key in objectOption) {
-            if(objectOption.hasOwnProperty(key)){
-            console.log(`${objectOption[key]} is ${typeof(objectOption[key])}`)
-          }
-    }
+const namedParametersFunc = ({a, b, c}) => {
+    console.log(`${a} is ${typeof(a)}`);
+    console.log(`${b} is ${typeof(b)}`);
+    console.log(`${c} is ${typeof(c)}`);
 }; 
 
 const unnamedTwoParamsFunc = (argOne, argTwo, ...arguments) => {
@@ -20,14 +15,11 @@ const unnamedTwoParamsFunc = (argOne, argTwo, ...arguments) => {
     multipleArgumentsFunc(...arguments);
 };
 
-const unnamedThreeParamsFunc = (values) => {
-    const optionOne = values.optionOne;
-    const optionTwo = values.optionTwo;
-    const optionThree = values.optionThree;
-    unnamedParametersFunc(values);
+const unnamedThreeParamsFunc = (a,b,c) => {
+    namedParametersFunc({a, b, c});
 }
 
 multipleArgumentsFunc('Boom', 2, [1,2,3]);
-unnamedParametersFunc({a: 3, b:'Masha', c: true});
+namedParametersFunc({a: 3, b:'Masha', c: true});
 unnamedTwoParamsFunc('And', 'still', 'I', 'rise');
 unnamedThreeParamsFunc(1, '100', false);
