@@ -1,7 +1,15 @@
-require("dotenv").config();
-const getWeather = require("get_weather_package");
-// const { getWeather } = require("./commands");
+const WeatherFunction = require("../get_weather_package");
+const readline = require("../readline");
 
-console.log(getWeather('Minsk'));
+const getWeather = (callback) => {
+      readline.question ("Введи название города в формате - Moscow,ru: ", (cityName) =>
+      {
+        WeatherFunction(cityName);
+        callback();
+      }  
+    )  
+}
 
 
+
+module.exports = getWeather;
